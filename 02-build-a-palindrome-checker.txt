@@ -1,0 +1,113 @@
+** start of index.html **
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <form>
+
+        <div class="container">
+            <label for="text">Text</label>
+            <input id="text-input" type="text" name="input" placeholder="enter text">
+            <button id="check-btn" type="submit" onclick="evaluateText()">Evaluate</button>
+        </div>
+
+        <br>
+        <div>
+            <label for="text">Result</label>
+            <p id="result"></p>
+        </div>
+    </form>
+</body>
+
+</html>
+
+** end of index.html **
+
+** start of script.js **
+
+function evaluateText() {
+    let result = '';
+    const palindrome = document.getElementById('text-input').value;
+
+    if (!palindrome || palindrome.trim() === '') {
+      result = 'Please input a value';
+      alert('Please input a value');  
+    } else {
+      const cleanPalindrome = palindrome.replace(/[^a-zA-Z0-9]/g, '');
+      const upCase = cleanPalindrome.toUpperCase();
+      let isPalindrome = true;
+
+      for (let i = 0, j = upCase.length - 1; i < j; i++, j--) {
+          if (upCase[i] !== upCase[j]) {
+              isPalindrome = false;
+              break;    
+          }  
+      }
+
+      result = palindrome.concat(' is a palindrome'); 
+
+      if (!isPalindrome) {
+        result = palindrome.concat(' is not a palindrome');
+      }
+    }
+
+    document.getElementById('result').textContent = result; 
+}
+
+** end of script.js **
+
+** start of styles.css **
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.container {
+  display: flex;
+  align-items: center; 
+  gap: 12px; 
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+button[type="submit"] {
+  color: black;
+  border: 1px solid #ccc;
+  padding: 8px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button[type="submit"]:hover {
+  background-color: gray;
+  color: white;
+}
+
+p {
+  margin-top: 8px;
+  padding: 10px 15px;
+  border: 1px solid #ccc;
+  color: black;
+  font-weight: bold;
+  border-radius: 5px;
+}
+
+** end of styles.css **
+
